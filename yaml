@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cn-shop-launcher
+    env: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ORIGIN
+        fromService:
+          type: web
+          name: cn-shop-launcher
+          property: hostUrl
+    disk:
+      name: data
+      mountPath: /app/data
+      sizeGB: 1
