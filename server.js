@@ -1,29 +1,5 @@
 
-  { id:'xhs',    name:'Xiaohongshu (RED)', url:'https://www.xiaohongshu.com' },
-  { id:'dewu',   name:'Dewu (Poizon)', url:'https://www.poizon.com' },
-  { id:'1688',   name:'1688', url:'https://www.1688.com' }
-];
-const grid = document.getElementById('sites');
-let translated = false;
-const prox = (u)=> '/proxy?u='+encodeURIComponent(u)+'&tl=en';
-function row(s){
-  const a = document.createElement('div'); a.className='site';
-  const left = document.createElement('div'); left.innerHTML = '<b>'+s.name+'</b><div class="muted">'+(new URL(s.url)).hostname+'</div>';
-  const right = document.createElement('div');
-  const open = document.createElement('button'); open.className='btn'; open.textContent='Open';
-  const openOrig = document.createElement('button'); openOrig.className='btn'; openOrig.textContent='Original';
-  open.onclick = ()=> window.open(translated?prox(s.url):s.url, '_blank');
-  openOrig.onclick = ()=> window.open(s.url, '_blank');
-  right.appendChild(open); right.appendChild(openOrig);
-  a.appendChild(left); a.appendChild(right); return a;
-}
-function render(){ grid.innerHTML=''; sites.forEach(s=> grid.appendChild(row(s))); }
-render();
-document.getElementById('orig').onclick = (e)=>{ translated=false; e.target.classList.add('active'); document.getElementById('tran').classList.remove('active'); };
-document.getElementById('tran').onclick  = (e)=>{ translated=true;  e.target.classList.add('active'); document.getElementById('orig').classList.remove('active'); };
-document.getElementById('reload').onclick = ()=> location.reload();
-</script>
-</body></html>`;
+  {;
 
 // Translate an array of texts with LibreTranslate; fallback to original on error
 async function translateTexts(texts, target="en"){
